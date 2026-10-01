@@ -7,7 +7,6 @@ primaryColor = "#FF3B30"
 
 [server]
 headless = true
-port = 8501
 enableCORS = false
 enableXsrfProtection = false
 

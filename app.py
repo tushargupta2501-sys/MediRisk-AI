@@ -22,7 +22,11 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-API_BASE_URL = os.environ.get("MEDIRISK_API_URL", "http://127.0.0.1:8000")
+_raw_api_url = os.environ.get("MEDIRISK_API_URL", "http://127.0.0.1:8000")
+# Render's fromService host gives a bare hostname — prepend https:// if needed
+if _raw_api_url and not _raw_api_url.startswith(("http://", "https://")):
+    _raw_api_url = f"https://{_raw_api_url}"
+API_BASE_URL = _raw_api_url.rstrip("/")
 
 def render_floating_html(html_str: str):
     """
